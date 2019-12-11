@@ -2,6 +2,11 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print('setting.py dml BASE_DIR 는: ', BASE_DIR)
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+print('setting.py dml TEMPLATES_DIR 는: ', TEMPLATES_DIR)
+
 
 def post_list(request):
     # HttpResponse는 클래스 이다.
@@ -12,20 +17,8 @@ def post_list(request):
     # os.path.dirname(path) : 현재 파일을 포함하고 있는 경로, 즉 상위 경로
     # os.path.join : 경로 추가해 주기
 
-    # 파일 열기
-    # open
-    cur_file_path = os.path.abspath(__file__)
-    blog_dir_path = os.path.dirname(cur_file_path)
-    root_dir_path = os.path.dirname(blog_dir_path) # 루트 디렉토리
-    templates_dir_path = os.path.join(root_dir_path, 'templates')
-    post_list_html_path = os.path.join(templates_dir_path, 'post_list.html')
-
-    print(cur_file_path)
-    print(blog_dir_path)
-
-
-    f = open(post_list_html_path, 'rt')
-    html = f.read()
-    f.close()
-    return HttpResponse(html)
-
+    # Template을 찾을 경로에서
+    # post_list.html을 찾아서
+    # 그 파일을 텍스트로 만들어서 HttpResponse형태로 돌려준다
+    # 위 기능을 하는 shortcut 함수
+    return render(request, 'post_list.html')
