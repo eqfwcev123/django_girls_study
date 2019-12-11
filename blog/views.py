@@ -21,4 +21,18 @@ def post_list(request):
     # post_list.html을 찾아서
     # 그 파일을 텍스트로 만들어서 HttpResponse형태로 돌려준다
     # 위 기능을 하는 shortcut 함수
-    return render(request, 'post_list.html')
+
+    #posts 라는 변수에 전체 post 를 가지는 QuerySet객체를 할당.
+    # hint) Post.objects.무언가 ...를 실행한 결과는 querySet 객체가 된다.
+    # conext 라는 딕셔너리를 생성하며, 'posts'키에 위 post 변수를 value도록 한다
+    # 3. render 의 3번째 위치인자로 위 context 변수를 할당한다.
+
+    from blog.models import Post
+    posts = Post.objects.all()
+    context= {
+        'posts':posts,
+    }
+
+
+    return render(request, 'post_list.html', context)
+
