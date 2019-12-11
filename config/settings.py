@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    #shell_plus를 쓰기위한 라이브러리
+    # shell_plus를 쓰기위한 라이브러리
     'django_extensions',
 ]
 
@@ -123,3 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# 정적 파일을 찾는 경로를 추가
+STATICFILES_DIRS = [
+    # djangogirls/static 폴더 path가 여기에 추가되도록 한다
+    os.path.join(BASE_DIR, 'static'),
+]
