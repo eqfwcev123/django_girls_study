@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    #shell_plus를 쓰기위한 라이브러리
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
