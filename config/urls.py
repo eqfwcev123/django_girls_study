@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import post_list, post_detail
+from blog.views import post_list, post_detail, post_add
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('post-list/', post_list, name='post_list'),
+    path('posts/', post_list, name='url-name-post-list'),
     # post-details 뒤에 오는것은 숫자인데, 이것을 pk로 하자!
-    path('post-detail/<int:pk>/',post_detail, name='post_detail')
+    path('post-detail/<int:pk>/',post_detail, name='url-name-post-detail'),
+    path('posts/add/',post_add, name='url-name-post-add')
 ]

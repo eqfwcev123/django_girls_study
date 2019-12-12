@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <!--name을 기준으로 데이터를 보낸다. 데이터를 보내고 나서 url 창에 우리가 보낸 데이터가 표시가 된다.-->
+        <div class="form-group">
+            <label for ="">제목:</label>
+            <input name="title" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for ="">내용:</label>
+            <textarea name="text" id="" rows="10" class="form-control"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">작성</button>
+        </div>
+    </form>
+</form>
+{% endblock %}

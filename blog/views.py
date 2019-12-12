@@ -55,3 +55,7 @@ def post_detail(request, pk):
     }
 
     return render(request, 'post_detail.html', context)
+
+
+def post_add(request):
+    return render(request, 'post_add.html')
