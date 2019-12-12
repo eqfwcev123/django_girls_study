@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!--html:5[tab]-->
+<!doctype html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="/static/bootstrap/bootstrap.css">
 </head>
 <body>
@@ -23,9 +29,13 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
-                    <p class="card-text">{{ post.text }}</p>
+                    <!--
+                        linebreaksbr: 줄바꿈을 <br>태그로 변환
+                        truncatechars: 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
+                    -->
+                    <p class="card-text">{{ post.text|linebreaksbr|truncatechars:250 }}</p>
                     <div class="text-right">
-                        <span>{{ post.created_date }}</span>
+                        <span class="small">{{ post.created_date }}</span>
                     </div>
                 </div>
             </div>
@@ -34,3 +44,15 @@
     </div>
 </body>
 </html>
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
