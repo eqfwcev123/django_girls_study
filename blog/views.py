@@ -1,4 +1,5 @@
 import os
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import Post
@@ -41,10 +42,14 @@ def post_list(request):
 #     context = A dictionary of values to add to the template context. By default, this is an empty dictionary.
 #     If a value in the dictionary is callable, the view will call it just before rendering the templat
 
+def post_detail(request, pk):
+    print('post_detail request : ', request)
+    print('post_detail pk: ', pk)
+    try:
+        post = Post.objects.get(id__exact= pk)
+    except:
+        return HttpResponse('<h1>해당 pk 를 가지고 있는 데이터가 없슴</h1>')
 
-def post_detail(request):
-
-    post = Post.objects.all()[0]
     context = {
         'posts': post,
     }
