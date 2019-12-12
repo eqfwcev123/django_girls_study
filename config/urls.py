@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('post-list/', post_list, name='post_list'),
     # post-details 뒤에 오는것은 숫자인데, 이것을 pk로 하자!
-    path('post-detail/<int:pk>',post_detail, name='post_detail')
+    path('post-detail/<int:pk>/',post_detail, name='post_detail')
 ]
