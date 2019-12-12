@@ -2,7 +2,10 @@ import os
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
+
 from blog.models import Post
+from django.http import HttpResponseRedirect
 
 def post_list(request):
     # HttpResponse는 클래스 이다.
@@ -23,7 +26,7 @@ def post_list(request):
     # conext 라는 딕셔너리를 생성하며, 'posts'키에 위 post 변수를 value도록 한다
     # 3. render 의 3번째 위치인자로 위 context 변수를 할당한다.
     from blog.models import Post
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-pk')
     context = {
         'posts': posts,
     }
@@ -58,4 +61,13 @@ def post_detail(request, pk):
 
 
 def post_add(request):
-    return render(request, 'post_add.html')
+    if request.method == 'POST':
+        author = request.user
+        title = request.POST['title']
+        text = request.POST['text']
+        post = Post.objects.create(author=author, title=title, text=text) #쿼리셋 반환
+        result = f'title: {post.title}, created_date:{post.created_date}'
+        post_list_url = reverse('url-name-post-list')
+        return HttpResponseRedirect(post_list_url) # /posts/ 로 우회
+    else:
+        return render(request, 'post_add.html')
