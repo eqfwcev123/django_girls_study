@@ -6,12 +6,31 @@
     <link rel="stylesheet" href="/static/bootstrap/bootstrap.css">
 </head>
 <body>
-    <h1>Post List</h1>
-    {%for post in posts%}
-    <div>{{post.title}}</div>
-    <div>{{post.author}}</div>
-    <div>{{post.created_date}}</div>
-    <div>{{post.published_date}}</div>
-    {% endfor %}
+    <div id="wrap">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a href="#" class="navbar-brand">DjangoGirls</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Post List</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid pt-2">
+            {% for post in posts %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.text }}</p>
+                    <div class="text-right">
+                        <span>{{ post.created_date }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

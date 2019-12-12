@@ -128,3 +128,5 @@ STATICFILES_DIRS = [
     # djangogirls/static 폴더 path가 여기에 추가되도록 한다
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# STATIC_URL 에 도착한 후에 STATICFILES_DIRS 에 있는 경로를 찾아라! 즉 '/static/' 에 도착하고나서 STATICFIES_DIRS 에 있는 경로를 찾아가라
