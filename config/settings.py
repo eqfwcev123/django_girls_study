@@ -11,12 +11,14 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print('setting.py dml BASE_DIR 는: ', BASE_DIR)
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+print('setting.py dml TEMPLATES_DIR 는: ', TEMPLATES_DIR)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from blog.views import TEMPLATES_DIR
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print('BASE_DIR 는 :', BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/

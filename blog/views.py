@@ -1,12 +1,7 @@
 import os
 from django.http import HttpResponse
 from django.shortcuts import render
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print('setting.py dml BASE_DIR 는: ', BASE_DIR)
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-print('setting.py dml TEMPLATES_DIR 는: ', TEMPLATES_DIR)
-
+from blog.models import Post
 
 def post_list(request):
     # HttpResponse는 클래스 이다.
@@ -26,7 +21,6 @@ def post_list(request):
     # hint) Post.objects.무언가 ...를 실행한 결과는 querySet 객체가 된다.
     # conext 라는 딕셔너리를 생성하며, 'posts'키에 위 post 변수를 value도록 한다
     # 3. render 의 3번째 위치인자로 위 context 변수를 할당한다.
-
     from blog.models import Post
     posts = Post.objects.all()
     context = {
@@ -48,6 +42,11 @@ def post_list(request):
 #     If a value in the dictionary is callable, the view will call it just before rendering the templat
 
 
-
 def post_detail(request):
-    return render(request, 'post_detail.html')
+
+    post = Post.objects.all()[0]
+    context = {
+        'posts': post,
+    }
+
+    return render(request, 'post_detail.html', context)
