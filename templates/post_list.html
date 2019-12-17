@@ -1,21 +1,33 @@
-{% extends 'base.html' %} <!-- base.html을 상속 받는다.-->
+{% extends 'base.html' %}
 
 {% block content %}
     {% for post in posts %}
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">
-                <a href="{% url 'url-name-post-detail' pk=post.pk %}">{{ post.title }}</a>
-            </h5>
-            <!--
-                linebreaksbr: 줄바꿈을 <br>태그로 변환
-                truncatechars: 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
-            -->
-            <p class="card-text">{{ post.text|linebreaksbr|truncatechars:250 }}</p>
-            <div class="text-right">
-                <span class="small">{{ post.created_date }}</span>
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- 아래 텍스트에 링크추가, 클릭 시 해당하는 /post-detail/어딘가/로 이동하도록 함 -->
+                <h5 class="card-title">
+                    <a href="{% url 'url-name-post-detail' pk=post.pk %}">{{ post.title }}</a>
+                </h5>
+                <!--
+                    linebreaksbr: 줄바꿈을 <br>태그로 변환
+                    truncatechars: 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
+                -->
+                <p class="card-text">{{ post.text|linebreaksbr|truncatechars:250 }}</p>
+
+                <div>
+                    <div class="btn-container float-left">
+<!--                        <form action="{% url 'url-name-post-delete' pk=post.pk %}" class="d-inline-block" method="POST">-->
+<!--                            {% csrf_token %}-->
+                            <a class="btn btn-danger btn-sm" href="{% url 'url-post-delete-confirm' pk=post.pk %}">삭제</a>
+<!--                        </form>-->
+
+                            <a class="btn btn-info btn-sm" href="{% url 'url-name-post-edit' pk=post.pk %}">수정</a>
+                    </div>
+                    <div class="text-right">
+                        <span class="small">{{ post.created_date }}</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     {% endfor %}
 {% endblock %}

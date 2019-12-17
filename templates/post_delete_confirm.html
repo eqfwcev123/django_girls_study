@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3">
+    <h3>이 포스트를 삭제 하시겠습니까?</h3>
+    <div class="card-body">
+        <li>제목 : {{post.title}}</li>
+        <li>작성일자 : {{post.created_date}}</li>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token%}
+        <button class="btn btn-danger btn-sm">삭제</button>
+    </form>
+</div>
+{% endblock %}
+
